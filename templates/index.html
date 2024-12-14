@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetes Prediction</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #4CAF50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        label {
+            font-size: 1rem;
+            margin-bottom: 5px;
+            display: block;
+            color: #555;
+        }
+
+        input[type="number"], input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fafafa;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .result {
+            background-color: #eaf6e8;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .result p {
+            margin: 5px 0;
+        }
+
+        /* Media query for responsiveness */
+        @media (max-width: 600px) {
+            body {
+                padding: 20px;
+            }
+
+            form {
+                width: 100%;
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div>
+        <h1>Diabetes Prediction</h1>
+        <form action="/" method="POST">
+            <label for="pregnancies">Pregnancies:</label>
+            <input type="number" id="pregnancies" name="pregnancies" required><br>
+
+            <label for="glucose">Glucose (mg):</label>
+            <input type="number" id="glucose" name="glucose" required><br>
+
+            <label for="blood_pressure">Blood Pressure (mmHg):</label>
+            <input type="number" id="blood_pressure" name="blood_pressure" required><br>
+
+            <label for="skin_thickness">Skin Thickness (mm):</label>
+            <input type="number" id="skin_thickness" name="skin_thickness" required><br>
+
+            <label for="insulin">Insulin (pmol/L):</label>
+            <input type="number" id="insulin" name="insulin" required><br>
+
+            <label for="bmi">BMI:</label>
+            <input type="number" step="0.1" id="bmi" name="bmi" required><br>
+
+            <label for="diabetes_pedigree">Diabetes Pedigree Function:</label>
+            <input type="number" step="0.01" id="diabetes_pedigree" name="diabetes_pedigree" required><br>
+
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required><br>
+
+            <input type="submit" value="Submit">
+        </form>
+
+        {% if result %}
+<div class="result">
+    <h2>Prediction Result:</h2>
+    <p>Prediction: {{ result.prediction }}</p>
+    <p>Negative Probability: {{ result.probability_negative }}</p>
+    <p>Positive Probability: {{ result.probability_positive }}</p>
+</div>
+{% endif %}
+    </div>
+
+</body>
+</html>
